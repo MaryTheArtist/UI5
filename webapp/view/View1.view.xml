@@ -1,4 +1,4 @@
-<mvc:View controllerName="com.kpmg.Exercise2.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+<mvc:View controllerName="com.kpmg.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
 	<Shell>
 		<App>
 			<pages>
@@ -12,6 +12,11 @@
 								<Input value="{/recipient/name}" valueLiveUpdate="true" width="60%" />
 								<FormattedText htmlText="Hello {/recipient/name}" class="sapUiSmallMargin sapThemeHighlight-asColor myCustomText" />
 							</content>
+						</Panel>
+						<Panel headerText="{i18n>tablePanelTitle}" class="sapUiResponsiveMargin" width="auto">
+							<List headerText="Products" items="{ path: 'productsModel>/ProductCollection' }">
+								<StandardListItem title="{productsModel>Name}" description="{productsModel>Description}" counter="{productsModel>Quantity}" />
+							</List>
 						</Panel>
 					</content>
 				</Page>
