@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Opa5) {
 	"use strict";
 
-	return Opa5.extend("com.kpmg.exersice_2.test.integration.arrangements.Startup", {
+	return Opa5.extend("kpmg.com.Exercise4BookStore.test.integration.arrangements.Startup", {
 
 		iStartMyApp: function (oOptionsParameter) {
 			var oOptions = oOptionsParameter || {};
@@ -14,7 +14,7 @@ sap.ui.define([
 			// start the app UI component
 			this.iStartMyUIComponent({
 				componentConfig: {
-					name: "com.kpmg.exersice_2",
+					name: "kpmg.com.Exercise4BookStore",
 					async: true
 				},
 				hash: oOptions.hash,

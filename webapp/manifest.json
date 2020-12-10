@@ -1,7 +1,7 @@
 {
 	"_version": "1.12.0",
 	"sap.app": {
-		"id": "com.kpmg.exersice_2",
+		"id": "kpmg.com.Exercise4BookStore",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"applicationVersion": {
@@ -10,11 +10,19 @@
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
 		"sourceTemplate": {
-			"id": "ui5template.basicSAPUI5ApplicationProject",
-			"version": "1.40.12"
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"ZBOOKSTORE_MV_SRV": {
+				"uri": "/sap/opu/odata/sap/ZBOOKSTORE_MV_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/metadata.xml"
+				}
+			}
 		}
 	},
-
 	"sap.ui": {
 		"technology": "UI5",
 		"icons": {
@@ -31,11 +39,10 @@
 			"phone": true
 		}
 	},
-
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
-			"viewName": "com.kpmg.exersice_2.view.View1",
+			"viewName": "kpmg.com.Exercise4BookStore.view.View1",
 			"type": "XML",
 			"async": true,
 			"id": "View1"
@@ -56,30 +63,51 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "com.kpmg.exersice_2.i18n.i18n"
+					"bundleName": "kpmg.com.Exercise4BookStore.i18n.i18n"
 				}
+			},
+			"bookstoreModel": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZBOOKSTORE_MV_SRV",
+				"preload": true
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
 				"async": true,
-				"viewPath": "com.kpmg.exersice_2.view",
+				"viewPath": "kpmg.com.Exercise4BookStore.view",
 				"controlAggregation": "pages",
 				"controlId": "app",
 				"clearControlAggregation": false
 			},
-			"routes": [{
-				"name": "RouteView1",
-				"pattern": "RouteView1",
-				"target": ["TargetView1"]
+			"routes": [
+				{
+					"name": "RouteView1",
+					"pattern": "RouteView1",
+					"target": [
+						"TargetView1"
+					]
+				}, 
+				{
+				"pattern": "details/{bookPath}",
+				"name": "details",
+				"target": "details"
 			}],
+				
 			"targets": {
 				"TargetView1": {
 					"viewType": "XML",
@@ -87,6 +115,10 @@
 					"clearControlAggregation": false,
 					"viewId": "View1",
 					"viewName": "View1"
+				},
+				"details": {
+					"viewId": "details",
+					"viewName": "Details"
 				}
 			}
 		}

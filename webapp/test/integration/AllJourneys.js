@@ -7,7 +7,7 @@ sap.ui.define([
 
 	Opa5.extendConfig({
 		arrangements: new Startup(),
-		viewNamespace: "com.kpmg.exersice_2.view.",
+		viewNamespace: "kpmg.com.Exercise4BookStore.view.",
 		autoWait: true
 	});
 });

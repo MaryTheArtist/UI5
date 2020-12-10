@@ -1,32 +1,30 @@
-sap.ui.define(
-	[
-		'sap/ui/core/UIComponent',
-		'sap/ui/Device',
-		'com/kpmg/exersice_2/model/models',
-	],
-	function (UIComponent, Device, models) {
-		'use strict';
+sap.ui.define([
+	"sap/ui/core/UIComponent",
+	"sap/ui/Device",
+	"kpmg/com/Exercise4BookStore/model/models"
+], function (UIComponent, Device, models) {
+	"use strict";
 
-		return UIComponent.extend('com.kpmg.exersice_2.Component', {
-			metadata: {
-				manifest: 'json',
-			},
+	return UIComponent.extend("kpmg.com.Exercise4BookStore.Component", {
 
-			/**
-			 * The component is initialized by UI5 automatically during the startup of the app and calls the init method once.
-			 * @public
-			 * @override
-			 */
-			init: function () {
-				// call the base component's init function
-				UIComponent.prototype.init.apply(this, arguments);
+		metadata: {
+			manifest: "json"
+		},
 
-				// enable routing
-				this.getRouter().initialize();
-				// set the device model
-				this.setModel(models.createDeviceModel(), 'device');
-				this.setModel(models.createProductsModel(), 'productsModel');
-			},
-		});
-	}
-);
+		/**
+		 * The component is initialized by UI5 automatically during the startup of the app and calls the init method once.
+		 * @public
+		 * @override
+		 */
+		init: function () {
+			// call the base component's init function
+			UIComponent.prototype.init.apply(this, arguments);
+
+			// enable routing
+			this.getRouter().initialize();
+
+			// set the device model
+			this.setModel(models.createDeviceModel(), "device");
+		}
+	});
+});

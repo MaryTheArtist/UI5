@@ -5,7 +5,7 @@ sap.ui.getCore().attachInit(function () {
 	"use strict";
 
 	sap.ui.require([
-		"com/kpmg/exersice_2/test/integration/AllJourneys"
+		"kpmg/com/Exercise4BookStore/test/integration/AllJourneys"
 	], function () {
 		QUnit.start();
 	});

@@ -5,7 +5,7 @@ sap.ui.getCore().attachInit(function () {
 	"use strict";
 
 	sap.ui.require([
-		"com/kpmg/exersice_2/test/unit/AllTests"
+		"kpmg/com/Exercise4BookStore/test/unit/AllTests"
 	], function () {
 		QUnit.start();
 	});
