@@ -1,0 +1,11 @@
+<mvc:View controllerName="kpmg.com.Exercise4BookStore.controller.DetailsBooks" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
+	<Page title="Details">
+		<List headerText="Details for authors' books">
+			<ListItem label="Author">
+				<Input value="{bookstoreModel>Author}"/>
+			</ListItem>
+			<ListItem label="Country">
+				<Input value="{bookstoreModel>Country}"/>
+			</ListItem>
+	</Page>
+</mvc:View>

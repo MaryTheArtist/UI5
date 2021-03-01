@@ -1,7 +1,7 @@
 /*global QUnit*/
 
 sap.ui.define([
-	"com/kpmg/exersice_2/controller/View1.controller"
+	"kpmg/com/Exercise4BookStore/controller/View1.controller"
 ], function (Controller) {
 	"use strict";
 

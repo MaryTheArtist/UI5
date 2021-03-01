@@ -1,0 +1,75 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZBOOKSTORE_MV_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="File" m:HasStream="true" sap:content-version="1">
+				<Key><PropertyRef Name="FileName"/></Key><Property Name="FileName" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Books" sap:content-version="1">
+				<Key><PropertyRef Name="Author"/><PropertyRef Name="Name"/></Key><Property Name="Author" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Author" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Book name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Category" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Product Categories"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="3" sap:unicode="false" sap:label="Book Price"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="toAuthors" Relationship="ZBOOKSTORE_MV_SRV.AuthorsAndBooks" FromRole="ToRole_AuthorsAndBooks"
+					ToRole="FromRole_AuthorsAndBooks"/></EntityType>
+			<EntityType Name="Authors" sap:content-version="1">
+				<Key><PropertyRef Name="Author"/></Key><Property Name="Author" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Author" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FullName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="User Full Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Customer Country"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="toBooks" Relationship="ZBOOKSTORE_MV_SRV.AuthorsAndBooks" FromRole="FromRole_AuthorsAndBooks"
+					ToRole="ToRole_AuthorsAndBooks"/></EntityType>
+			<EntityType Name="zc_authorsbooks_fioriType" sap:label="Consumption view for Authors and Books" sap:content-version="1">
+				<Key><PropertyRef Name="author"/></Key><Property Name="author" Type="Edm.String" Nullable="false" MaxLength="30" sap:display-format="UpperCase" sap:label="Author"/><Property Name="full_name" Type="Edm.String" MaxLength="50" sap:display-format="UpperCase" sap:label="User Full Name"/><Property Name="country" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Customer Country"/><NavigationProperty Name="to_Books" Relationship="ZBOOKSTORE_MV_SRV.assoc_037AA2EC87FF8E6109947A71CAECCF9F"
+					FromRole="FromRole_assoc_037AA2EC87FF8E6109947A71CAECCF9F" ToRole="ToRole_assoc_037AA2EC87FF8E6109947A71CAECCF9F"/></EntityType>
+			<EntityType Name="zc_books_fioriType" sap:label="Consumption view for Books" sap:content-version="1">
+				<Key><PropertyRef Name="Author"/><PropertyRef Name="BookTitle"/></Key><Property Name="Author" Type="Edm.String" Nullable="false" MaxLength="30" sap:display-format="UpperCase" sap:label="Author"/><Property Name="BookTitle" Type="Edm.String" Nullable="false" MaxLength="30" sap:display-format="UpperCase" sap:label="Book name"/><Property Name="Category" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Product Categories"/><Property Name="Price" Type="Edm.Decimal" Precision="15" Scale="3" sap:label="Book Price"/></EntityType>
+			<ComplexType Name="AuthorCheck"><Property Name="Exists" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="User Exists" sap:creatable="false" sap:updatable="false"
+				sap:sortable="false" sap:filterable="false"/></ComplexType>
+			<Association Name="AuthorsAndBooks" sap:content-version="1"><End Type="ZBOOKSTORE_MV_SRV.Authors" Multiplicity="1" Role="FromRole_AuthorsAndBooks"/><End Type="ZBOOKSTORE_MV_SRV.Books" Multiplicity="*" Role="ToRole_AuthorsAndBooks"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_AuthorsAndBooks"><PropertyRef Name="Author"/></Principal>
+					<Dependent Role="ToRole_AuthorsAndBooks"><PropertyRef Name="Author"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="assoc_037AA2EC87FF8E6109947A71CAECCF9F" sap:content-version="1"><End Type="ZBOOKSTORE_MV_SRV.zc_authorsbooks_fioriType" Multiplicity="1" Role="FromRole_assoc_037AA2EC87FF8E6109947A71CAECCF9F"/><End Type="ZBOOKSTORE_MV_SRV.zc_books_fioriType" Multiplicity="*" Role="ToRole_assoc_037AA2EC87FF8E6109947A71CAECCF9F"/></Association>
+			<EntityContainer Name="ZBOOKSTORE_MV_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx"><EntitySet Name="zc_authorsbooks_fiori" EntityType="ZBOOKSTORE_MV_SRV.zc_authorsbooks_fioriType" sap:content-version="1"/><EntitySet Name="zc_books_fiori" EntityType="ZBOOKSTORE_MV_SRV.zc_books_fioriType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="FileSet" EntityType="ZBOOKSTORE_MV_SRV.File" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="BooksSet" EntityType="ZBOOKSTORE_MV_SRV.Books" sap:content-version="1"/><EntitySet Name="AuthorsSet" EntityType="ZBOOKSTORE_MV_SRV.Authors" sap:content-version="1"/>
+				<AssociationSet Name="assoc_037AA2EC87FF8E6109947A71CAECCF9F" Association="ZBOOKSTORE_MV_SRV.assoc_037AA2EC87FF8E6109947A71CAECCF9F"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="zc_authorsbooks_fiori" Role="FromRole_assoc_037AA2EC87FF8E6109947A71CAECCF9F"/><End EntitySet="zc_books_fiori" Role="ToRole_assoc_037AA2EC87FF8E6109947A71CAECCF9F"/></AssociationSet>
+				<AssociationSet Name="AuthorsAndBooksSet" Association="ZBOOKSTORE_MV_SRV.AuthorsAndBooks" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="AuthorsSet" Role="FromRole_AuthorsAndBooks"/><End EntitySet="BooksSet" Role="ToRole_AuthorsAndBooks"/></AssociationSet>
+				<FunctionImport Name="CheckAuthor" ReturnType="ZBOOKSTORE_MV_SRV.AuthorCheck" m:HttpMethod="POST" sap:action-for="ZBOOKSTORE_MV_SRV.Authors"><Parameter Name="Author" Type="Edm.String" Mode="In"/></FunctionImport>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZBOOKSTORE_MV_SRV.ZBOOKSTORE_MV_SRV_Entities">
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue><PropertyValue Property="Rollup" EnumMember="None"/></Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZBOOKSTORE_MV_SRV.zc_authorsbooks_fioriType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>author</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZBOOKSTORE_MV_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZBOOKSTORE_MV_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
